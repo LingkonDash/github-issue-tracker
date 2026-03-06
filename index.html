@@ -18,22 +18,55 @@
   <!-- Custom CSS and Geist Font -->
   <link rel="stylesheet" href="style.css">
 
+  <style type="text/tailwindcss">
+    @theme {
+      --color-primary-text: #000000;
+      --color-secondary-text: #64748B;
+
+      --color-blue-text: #0066ffde;
+    }
+    </style>
+
   <!-- favicon -->
   <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
 </head>
 
-<body class="flex justify-center items-center h-screen w-screen">
-  <header>
-    <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+<body class="flex flex-col justify-center bg-base-200 items-center min-h-[100dvh] p-10">
+  <header class="space-y-6 bg-white p-8 shadow-lg rounded-2xl">
 
-      <label class="label">Email</label>
+    <div class="flex flex-col justify-center items-center text-center space-y-6">
+      <div>
+        <img src="assets/github-logo.png" alt="Github logo">
+      </div>
+      <div class="space-y-1">
+        <h1 class="text-primary-text text-2xl font-semibold">GitHub Issues Tracker</h1>
+        <p class="text-secondary-text">Sign in to manage your issues</p>
+      </div>
+    </div>
+
+    <fieldset class="fieldset w-xs p-4">
+
+      <label class="text-primary-text text-xs font-semibold">Email</label>
       <input type="email" class="input" placeholder="Email" />
+      <p class="label text-blue-text">Default: admin123</p>
 
-      <label class="label">Password</label>
+      <label class="text-primary-text text-xs font-semibold">Password</label>
       <input type="password" class="input" placeholder="Password" />
+      <p class="label text-blue-text">Default: admin123</p>
 
-      <button class="btn btn-neutral mt-4">Login</button>
+      <button class="btn btn-primary mt-4">Sign In</button>
     </fieldset>
+
+    <div class="divider">OR</div>
+
+    <div class="text-secondary-text text-[14px] text-center">
+      <p class="mb-2">Demo Credentials:</p>
+      <div class="text-center p-6 bg-base-200 rounded-lg">
+        <p><span class="font-medium text-primary-text">Username:</span> admin</p>
+        <p><span class="font-medium text-primary-text">Password:</span> admin123</p>
+      </div>
+    </div>
+
   </header>
   <script src="scripts/login.js"></script>
 </body>
