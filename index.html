@@ -15,6 +15,9 @@
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
+  <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Custom CSS and Geist Font -->
   <link rel="stylesheet" href="style.css">
 
@@ -47,11 +50,14 @@
     <fieldset class="fieldset w-xs p-4">
 
       <label class="text-primary-text text-xs font-semibold">Email</label>
-      <input type="email" class="input" placeholder="Email" />
-      <p class="label text-blue-text">Default: admin123</p>
+      <input type="email" value="admin" class="input" placeholder="Email" />
+      <p class="label text-blue-text">Default: admin</p>
 
       <label class="text-primary-text text-xs font-semibold">Password</label>
-      <input type="password" class="input" placeholder="Password" />
+      <div class="input flex justify-center items-center">
+        <input type="password" id="login-password" placeholder="Password" />
+        <button id="eyeBtn" onclick="eyebutton()" class="cursor-pointer text-secondary-text hover:text-primary-text"><i id="eye" class="fa-solid fa-eye"></i></button>
+      </div>
       <p class="label text-blue-text">Default: admin123</p>
 
       <button class="btn btn-primary mt-4">Sign In</button>
