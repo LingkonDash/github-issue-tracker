@@ -1,18 +1,30 @@
-function eyebutton() {
-  const eyeBtn = document.getElementById('eyeBtn');
-  const passInput = document.getElementById('login-password')
+const loginBtn = document.getElementById('login-btn');
+const passInput = document.getElementById('login-password')
+const emailInput = document.getElementById('login-email')
 
-  const eye = eyeBtn.querySelector('#eye');
+loginBtn.addEventListener('click', () => {
+
+  if(passInput.value !== 'admin123' || emailInput.value !== 'admin') {
+    alert('Wrong Password or Username')
+    return;
+  }
+  window.location.assign("main.html")
   
-  if(eye.classList.contains('fa-eye')) {
-    eye.classList.remove('fa-eye');
-    eye.classList.add('fa-eye-slash');
+})
+
+
+function eyebutton() {
+  const eye =  document.querySelector('#eye');
+  
+  if(eye.classList.contains('fa-eye-slash')) {
+    eye.classList.remove('fa-eye-slash');
+    eye.classList.add('fa-eye');
 
     passInput.type = 'text'
 
   } else {
-    eye.classList.remove('fa-eye-slash');
-    eye.classList.add('fa-eye');
+    eye.classList.remove('fa-eye');
+    eye.classList.add('fa-eye-slash');
     
     passInput.type = 'password'
   }
