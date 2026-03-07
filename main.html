@@ -40,7 +40,7 @@
       --color-soft-yellow: #FFF8DB;
       --color-soft-green: #DEFCE8;
       --color-soft-blue: #3abff820;
-      --color-soft-primary: #4A00FF20;
+      --color-soft-primary: #4A00FF10;
     }
     </style>
 
@@ -87,7 +87,7 @@
     </section>
 
     <!-- Main Section (issue loader) -->
-    <section class="mt-5 shadow-md rounded-lg bg-issues-bg">
+    <section id="mainSection" class="mt-5 shadow-md rounded-lg bg-issues-bg">
       <div class="flex justify-between items-center bg-secondary-bg rounded-t-lg border-b-3 border-[#E4E4E7] p-6">
         <div class="flex justify-center items-center gap-2">
           <div class="rounded-full bg-[#ECE4FF] p-2 w-fit">
@@ -116,7 +116,9 @@
 
       </div>
 
-
+    </section>
+    <section id="loader" class=" z-10 hidden justify-center items-center mt-32">
+      <span class="loading loading-spinner loading-xl scale-180"></span>
     </section>
 
   </main>

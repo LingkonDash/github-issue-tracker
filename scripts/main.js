@@ -2,6 +2,9 @@
 const btnContainer = document.getElementById('btn-container');
 const parentDiv = document.getElementById('parent-Div');
 
+const loader = document.getElementById('loader');
+const mainSection = document.getElementById('mainSection')
+
 const totalIssues = document.getElementById('total-issues');
 let openIssues = [];
 let closeIssues = [];
@@ -9,11 +12,16 @@ let closeIssues = [];
 
 // fetching all issues 
 async function allIssues() {
+
+  showLoadng();
+
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
   const res = await fetch(url);
   const json = await res.json();
 
   dataToElment(json.data);
+
+  hideLoadng();
 
 }
 
@@ -26,12 +34,12 @@ function issueLoader(id) {
   btnContainer.querySelector('#all-btn').classList.remove('btn-primary');
   btnContainer.querySelector('#open-btn').classList.remove('btn-primary');
   btnContainer.querySelector('#closed-btn').classList.remove('btn-primary');
-  
+
   btnContainer.querySelector(`#${id}`).classList.add('btn-primary')
-  
-  if(id === 'all-btn') allIssues();
-  if(id === 'open-btn') openIssuesToElement();
-  if(id === 'closed-btn') closedIssuesToElement();
+
+  if (id === 'all-btn') allIssues();
+  if (id === 'open-btn') openIssuesToElement();
+  if (id === 'closed-btn') closedIssuesToElement();
 }
 
 // converting json array objects to element 
@@ -48,9 +56,9 @@ function dataToElment(data) {
 
   data.forEach(obj => {
 
-    if(obj.status === 'open') openIssues.push(obj);
+    if (obj.status === 'open') openIssues.push(obj);
     else closeIssues.push(obj);
-    
+
 
     const div = document.createElement('div');
     div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
@@ -83,12 +91,14 @@ function dataToElment(data) {
 // Loading open issues data 
 function openIssuesToElement() {
 
+  showLoadng();
+
   totalIssues.innerText = openIssues.length;
 
   parentDiv.innerHTML = '';
 
   openIssues.forEach(obj => {
-    
+
 
     const div = document.createElement('div');
     div.className = `border-t-5 border-green-border rounded-lg shadow-lg max-w-[350px]`
@@ -116,16 +126,20 @@ function openIssuesToElement() {
     parentDiv.appendChild(div);
 
   });
+
+  hideLoadng();
 }
 // Loading closed issues data 
 function closedIssuesToElement() {
+
+  showLoadng();
 
   totalIssues.innerText = closeIssues.length;
 
   parentDiv.innerHTML = '';
 
   closeIssues.forEach(obj => {
-    
+
 
     const div = document.createElement('div');
     div.className = `border-t-5 border-purple-border rounded-lg shadow-lg max-w-[350px]`
@@ -153,6 +167,8 @@ function closedIssuesToElement() {
     parentDiv.appendChild(div);
 
   });
+
+  hideLoadng();
 }
 
 
@@ -167,5 +183,19 @@ function dropdownMenu() {
     menu.classList.remove('flex')
     menu.classList.add('hidden')
   }
+
+}
+
+function showLoadng() {
+  loader.classList.add('flex')
+  loader.classList.remove('hidden')
+  
+  mainSection.classList.add('hidden')
+}
+function hideLoadng() {
+  mainSection.classList.remove('hidden')
+
+  loader.classList.add('hidden')
+  loader.classList.remove('flex')
 
 }
