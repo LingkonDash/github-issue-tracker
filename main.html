@@ -35,6 +35,10 @@
 
       --color-green-border: #00A96E;
       --color-purple-border: #A855F7;
+
+      --color-soft-red: #FEECEC;
+      --color-soft-yellow: #FFF8DB;
+      --color-soft-green: #DEFCE8;
     }
     </style>
 
@@ -105,25 +109,28 @@
       </div>
 
       <!-- Issues will load here  -->
-      <div class="p-10 md:p-8 lg:p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div id="parent-Div" class="p-5 pt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center align-items-stretch gap-4">
 
-        <div class="border-t-5 border-green-border rounded-lg shadow-lg">
+        <div class="border-t-5 h-full border-green-border rounded-lg shadow-lg max-w-[350px]">
           <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
             <div class="flex justify-between items-center">
               <img src="assets/Open-Status.png" alt="open status">
-              <div class="badge badge-soft badge-error border-dashed border-[#ef444480] rounded-full uppercase w-22">
+              <div class="badge badge-soft badge-error rounded-full uppercase w-22">
                 High</div>
             </div>
             <div class="space-y-2">
-              <h2 class="font-semibold text-primary-text text-xl">Fix navigation menu on mobile devices</h2>
-              <p class="text-secondary-text">The navigation menu doesn't collapse properly on mobile devices...</p>
+              <h2 class="font-semibold text-primary-text ">Fix navigation menu on mobile devices</h2>
+              <p class="text-secondary-text text-xs">The navigation menu doesn't collapse properly on mobile devices...
+              </p>
             </div>
-            <div class="space-x-2">
-              <div class="badge badge-outline badge-error rounded-full bg-[#FEECEC] uppercase"><i class="fa-solid fa-bug"></i>Bug</div>
-              <div class="badge badge-outline badge-warning rounded-full bg-[#FFF8DB] uppercase"><i class="fa-solid fa-dharmachakra"></i>help wanted</div>
+            <div class="flex flex-wrap justify-start items-center gap-2">
+              <div class="badge badge-outline badge-error rounded-full bg-soft-red uppercase"><i
+                  class="fa-solid fa-bug"></i>Bug</div>
+              <div class="badge badge-outline badge-warning rounded-full bg-soft-yellow uppercase"><i
+                  class="fa-solid fa-dharmachakra"></i>help wanted</div>
             </div>
           </div>
-          <div class="p-6 space-y-2 text-secondary-text">
+          <div class="p-6 space-y-2 text-secondary-text text-xs">
             <p>#1 by john_doe</p>
             <p>1/15/2024</p>
           </div>
