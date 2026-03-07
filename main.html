@@ -87,7 +87,7 @@
     </section>
 
     <!-- Main Section (issue loader) -->
-    <section id="mainSection" class="mt-5 shadow-md rounded-lg bg-issues-bg">
+    <section id="mainSection" class="hidden mt-5 shadow-md rounded-lg bg-issues-bg">
       <div class="flex justify-between items-center bg-secondary-bg rounded-t-lg border-b-3 border-[#E4E4E7] p-6">
         <div class="flex justify-center items-center gap-2">
           <div class="rounded-full bg-[#ECE4FF] p-2 w-fit">
@@ -111,13 +111,14 @@
       </div>
 
       <!-- Issues will load here  -->
-      <div id="parent-Div"class="p-5 pt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center align-items-stretch gap-4">
+      <div id="parent-Div" class="p-5 pt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center align-items-stretch gap-4">
 
 
       </div>
-
     </section>
-    <section id="loader" class=" z-10 hidden justify-center items-center mt-32">
+
+    <!-- Loader section  -->
+    <section id="loader" class="flex z-10 justify-center items-center mt-32">
       <span class="loading loading-spinner loading-xl scale-180"></span>
     </section>
 

@@ -9,6 +9,7 @@ const totalIssues = document.getElementById('total-issues');
 let openIssues = [];
 let closeIssues = [];
 
+showLoadng();
 
 // fetching all issues 
 async function allIssues() {
