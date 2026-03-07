@@ -35,8 +35,8 @@ function dataToElment(data) {
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
             <div class="flex flex-wrap justify-start items-center gap-2">
-              <div class="badge badge-outline badge-error rounded-full bg-soft-red uppercase"><i class="fa-solid fa-bug"></i>Bug</div>
-              <div class="badge badge-outline badge-warning rounded-full bg-soft-yellow uppercase"><i class="fa-solid fa-dharmachakra"></i>help wanted</div>
+              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
+              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
             </div>
           </div>
           <div class="p-6 space-y-2 text-secondary-text text-xs">
