@@ -69,7 +69,7 @@ function dataToElment(data) {
               <img src="${obj.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png'}" alt="${obj.status} status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2">
+            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -79,8 +79,14 @@ function dataToElment(data) {
             </div>
           </div>
           <div class="p-6 space-y-2 text-secondary-text text-xs">
-            <p>#1 by john_doe</p>
-            <p>1/15/2024</p>
+            <div class="flex justify-between items-center">
+              <p>#${obj.id} ${obj.author}</p>
+              <p>${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p>Assignee: ${obj.assignee ? obj.assignee : 'Unassigned'}</p>
+              <p>Updated: ${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
           </div>
 
     `
@@ -109,7 +115,7 @@ function openIssuesToElement() {
               <img src="assets/Open-Status.png" alt="Open status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2">
+            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -119,8 +125,14 @@ function openIssuesToElement() {
             </div>
           </div>
           <div class="p-6 space-y-2 text-secondary-text text-xs">
-            <p>#1 by john_doe</p>
-            <p>1/15/2024</p>
+            <div class="flex justify-between items-center">
+              <p>#${obj.id} ${obj.author}</p>
+              <p>${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p>Assignee: ${obj.assignee ? obj.assignee : 'Unassigned'}</p>
+              <p>Updated: ${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
           </div>
 
     `
@@ -150,7 +162,7 @@ function closedIssuesToElement() {
               <img src="assets/Closed-Status.png" alt="Closed status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2">
+            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -160,8 +172,14 @@ function closedIssuesToElement() {
             </div>
           </div>
           <div class="p-6 space-y-2 text-secondary-text text-xs">
-            <p>#1 by john_doe</p>
-            <p>1/15/2024</p>
+            <div class="flex justify-between items-center">
+              <p>#${obj.id} ${obj.author}</p>
+              <p>${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p>Assignee: ${obj.assignee ? obj.assignee : 'Unassigned'}</p>
+              <p>Updated: ${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
           </div>
 
     `
@@ -170,6 +188,48 @@ function closedIssuesToElement() {
   });
 
   hideLoadng();
+}
+
+// Loading modal 
+async function displayModal(id) {
+
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`
+
+  const res = await fetch(url);
+  const json = await res.json();
+
+  modalLoader(json.data);
+
+  console.log(json.data);
+
+}
+
+function modalLoader(data) {
+  const modalParent = document.getElementById('modal-parent')
+
+  modalParent.innerHTML = ''
+
+  const div = document.createElement('div');
+  div.innerHTML = `
+  <dialog id="${data.id}" class="modal modal-bottom sm:modal-middle">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">${data.title}</h3>
+            <p class="py-4">Press ESC key orasdfasdfasdf click the button below to close</p>
+            <div class="modal-action">
+              
+              <!-- if there is a button in form, it will close the modal -->
+              <form method="dialog">
+                <button class="btn btn-primary">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+  `
+
+  modalParent.appendChild(div);
+
+
+  document.getElementById(`${data.id}`).showModal()
 }
 
 
@@ -190,7 +250,7 @@ function dropdownMenu() {
 function showLoadng() {
   loader.classList.add('flex')
   loader.classList.remove('hidden')
-  
+
   mainSection.classList.add('hidden')
 }
 function hideLoadng() {
