@@ -36,9 +36,31 @@
   <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
 </head>
 
-<body>
+<body class="max-w-[1500px] mx-auto">
   <header>
-    <h1>Hello world!!</h1>
+    <nav class="navbar flex justify-between items-center bg-base-100 shadow-sm px-6">
+      <div class="flex gap-2 justify-center items-center">
+        <img width="36" src="assets/github-logo.png" alt="Github logo">
+        <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+      </div>
+      <div class="hidden md:flex justify-center items-center gap-2">
+        <div class="input input-bordered w-40 md:w-auto">
+          <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <input type="text" placeholder="Search issues..." />
+        </div>
+        <button id="login-btn" class="btn btn-primary">+ New Issue</button>
+      </div>
+      <div class="relative md:hidden">
+        <button onclick="dropdownMenu()" class="text-2xl"><i class="fa-solid fa-bars"></i></button>
+        <div id="dropdown-Menu" class="absolute top-[47px] bg-white -right-[22px] hidden flex-col-reverse gap-5 py-10 p-5 shadow-md">
+          <div class="input input-bordered w-40 md:w-auto">
+            <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" placeholder="Search issues..." />
+          </div>
+          <button class="btn btn-primary shadow-none">+ New Issue</button>
+        </div>
+      </div>
+    </nav>
   </header>
   <script src="scripts/main.js"></script>
 </body>

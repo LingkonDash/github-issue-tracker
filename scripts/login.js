@@ -5,7 +5,7 @@ const emailInput = document.getElementById('login-email')
 loginBtn.addEventListener('click', () => {
 
   if(passInput.value !== 'admin123' || emailInput.value !== 'admin') {
-    alert('Wrong Password or Username')
+    alert('Invalid Password or Username')
     return;
   }
   window.location.assign("main.html")
