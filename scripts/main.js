@@ -1,7 +1,13 @@
 // Variables 
 const btnContainer = document.getElementById('btn-container');
+const parentDiv = document.getElementById('parent-Div');
+
+const totalIssues = document.getElementById('total-issues');
+let openIssues = [];
+let closeIssues = [];
 
 
+// fetching all issues 
 async function allIssues() {
   const url = 'https://phi-lab-server.vercel.app/api/v1/lab/issues'
   const res = await fetch(url);
@@ -10,16 +16,41 @@ async function allIssues() {
   dataToElment(json.data);
 
 }
+
 allIssues();
 
+// Issue Loader on button click
+function issueLoader(id) {
+
+  // button active routing update
+  btnContainer.querySelector('#all-btn').classList.remove('btn-primary');
+  btnContainer.querySelector('#open-btn').classList.remove('btn-primary');
+  btnContainer.querySelector('#closed-btn').classList.remove('btn-primary');
+  
+  btnContainer.querySelector(`#${id}`).classList.add('btn-primary')
+  
+  if(id === 'all-btn') allIssues();
+  if(id === 'open-btn') openIssuesToElement();
+  if(id === 'closed-btn') closedIssuesToElement();
+}
+
+// converting json array objects to element 
 function dataToElment(data) {
 
-  const parentDiv = document.getElementById('parent-Div');
-  // parentDiv.innerHTML = ''
+
+
+  totalIssues.innerText = data.length;
+
+  parentDiv.innerHTML = ''
+
+  openIssues = []
+  closeIssues = []
 
   data.forEach(obj => {
 
-    console.log(obj);
+    if(obj.status === 'open') openIssues.push(obj);
+    else closeIssues.push(obj);
+    
 
     const div = document.createElement('div');
     div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
@@ -34,8 +65,8 @@ function dataToElment(data) {
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
             <div class="flex flex-wrap justify-start items-center gap-2">
-              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
-              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
+              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[0] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
+              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[1] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-primary' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
             </div>
           </div>
           <div class="p-6 space-y-2 text-secondary-text text-xs">
@@ -47,22 +78,82 @@ function dataToElment(data) {
     parentDiv.appendChild(div);
 
   });
-
 }
 
+// Loading open issues data 
+function openIssuesToElement() {
 
-// Issue Loader on button click
-function issueLoader(id) {
+  totalIssues.innerText = openIssues.length;
 
-  // button active routing update
-  btnContainer.querySelector('#all-btn').classList.remove('btn-primary');
-  btnContainer.querySelector('#open-btn').classList.remove('btn-primary');
-  btnContainer.querySelector('#closed-btn').classList.remove('btn-primary');
+  parentDiv.innerHTML = '';
 
-  btnContainer.querySelector(`#${id}`).classList.add('btn-primary')
+  openIssues.forEach(obj => {
+    
 
+    const div = document.createElement('div');
+    div.className = `border-t-5 border-green-border rounded-lg shadow-lg max-w-[350px]`
+    div.innerHTML = `
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+            <div class="flex justify-between items-center">
+              <img src="assets/Open-Status.png" alt="Open status">
+              <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
+            </div>
+            <div class="space-y-2">
+              <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
+              <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
+            </div>
+            <div class="flex flex-wrap justify-start items-center gap-2">
+              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[0] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
+              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[1] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-primary' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
+            </div>
+          </div>
+          <div class="p-6 space-y-2 text-secondary-text text-xs">
+            <p>#1 by john_doe</p>
+            <p>1/15/2024</p>
+          </div>
+
+    `
+    parentDiv.appendChild(div);
+
+  });
 }
+// Loading closed issues data 
+function closedIssuesToElement() {
 
+  totalIssues.innerText = closeIssues.length;
+
+  parentDiv.innerHTML = '';
+
+  closeIssues.forEach(obj => {
+    
+
+    const div = document.createElement('div');
+    div.className = `border-t-5 border-purple-border rounded-lg shadow-lg max-w-[350px]`
+    div.innerHTML = `
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+            <div class="flex justify-between items-center">
+              <img src="assets/Closed-Status.png" alt="Closed status">
+              <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
+            </div>
+            <div class="space-y-2">
+              <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
+              <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
+            </div>
+            <div class="flex flex-wrap justify-start items-center gap-2">
+              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[0] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
+              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[1] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-primary' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
+            </div>
+          </div>
+          <div class="p-6 space-y-2 text-secondary-text text-xs">
+            <p>#1 by john_doe</p>
+            <p>1/15/2024</p>
+          </div>
+
+    `
+    parentDiv.appendChild(div);
+
+  });
+}
 
 
 function dropdownMenu() {

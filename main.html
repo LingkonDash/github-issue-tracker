@@ -40,6 +40,7 @@
       --color-soft-yellow: #FFF8DB;
       --color-soft-green: #DEFCE8;
       --color-soft-blue: #3abff820;
+      --color-soft-primary: #4A00FF20;
     }
     </style>
 
@@ -93,7 +94,7 @@
             <img src="assets/Aperture.png" alt="Issues">
           </div>
           <div>
-            <h2 class="font-semibold text-xl text-primary-text"><span>50</span> Issues</h2>
+            <h2 class="font-semibold text-xl text-primary-text"><span id="total-issues">0</span> Issues</h2>
             <p class="text-secondary-text">Track and manage your project issues</p>
           </div>
         </div>
@@ -110,33 +111,12 @@
       </div>
 
       <!-- Issues will load here  -->
-      <div id="parent-Div"
-        class="p-5 pt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center align-items-stretch gap-4">
+      <div id="parent-Div"class="p-5 pt-10 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center align-items-stretch gap-4">
 
-        <div class="border-t-5 h-full border-green-border rounded-lg shadow-lg max-w-[350px]">
-          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
-            <div class="flex justify-between items-center">
-              <img src="assets/Open-Status.png" alt="open status">
-              <div class="badge badge-soft badge-error rounded-full uppercase w-22">
-                High</div>
-            </div>
-            <div class="space-y-2">
-              <h2 class="font-semibold text-primary-text ">Fix navigation menu on mobile devices</h2>
-              <p class="text-secondary-text text-xs">The navigation menu doesn't collapse properly on mobile devices...
-              </p>
-            </div>
-            <div class="flex flex-wrap justify-start items-center gap-2 ">
-              <div class="badge badge-outline badge-accent bg-soft-green">Accent</div>
-              <div class="badge badge-outline badge-warning rounded-full bg-soft-yellow uppercase">help wanted</div>
-            </div>
-          </div>
-          <div class="p-6 space-y-2 text-secondary-text text-xs">
-            <p>#1 by john_doe</p>
-            <p>1/15/2024</p>
-          </div>
-        </div>
 
       </div>
+
+
     </section>
 
   </main>
