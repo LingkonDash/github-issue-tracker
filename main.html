@@ -29,6 +29,9 @@
       --color-secondary-text: #64748B;
 
       --color-blue-text: #0066ffde;
+
+      --color-primary-bg: #F8FAFC;
+      --color-secondary-bg: #ffffff;
     }
     </style>
 
@@ -36,9 +39,9 @@
   <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
 </head>
 
-<body class="max-w-[1500px] mx-auto">
-  <header>
-    <nav class="navbar flex justify-between items-center bg-base-100 shadow-sm px-6">
+<body class="bg-primary-bg min-h-[100dvh]">
+  <header class="bg-secondary-bg shadow-sm px-6">
+    <nav class="max-w-[1600px] mx-auto navbar flex justify-between items-center">
       <div class="flex gap-2 justify-center items-center">
         <img width="36" src="assets/github-logo.png" alt="Github logo">
         <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
@@ -48,11 +51,12 @@
           <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
           <input type="text" placeholder="Search issues..." />
         </div>
-        <button id="login-btn" class="btn btn-primary">+ New Issue</button>
+        <button class="btn btn-primary">+ New Issue</button>
       </div>
       <div class="relative md:hidden">
         <button onclick="dropdownMenu()" class="text-2xl"><i class="fa-solid fa-bars"></i></button>
-        <div id="dropdown-Menu" class="absolute top-[47px] bg-white -right-[22px] hidden flex-col-reverse gap-5 py-10 p-5 shadow-md">
+        <div id="dropdown-Menu"
+          class="absolute top-[47px] bg-white -right-[22px] hidden flex-col gap-5 py-10 p-5 shadow-md">
           <div class="input input-bordered w-40 md:w-auto">
             <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
             <input type="text" placeholder="Search issues..." />
@@ -62,6 +66,16 @@
       </div>
     </nav>
   </header>
+  <main class="max-w-[1600px] mx-auto px-6">
+    <section class="mt-10 shadow-sm bg-secondary-bg p-6 rounded-lg">
+      <div id="btn-container" class="flex flex-wrap gap-2 justify-around md:justify-start">
+        <button id="all-btn" onclick="issueLoader('all-btn')" class="btn btn-primary w-24">All</button>
+        <button id="open-btn" onclick="issueLoader('open-btn')" class="btn w-24">Open</button>
+        <button id="closed-btn" onclick="issueLoader('closed-btn')" class="btn w-24">Closed</button>
+      </div>
+    </section>
+
+  </main>
   <script src="scripts/main.js"></script>
 </body>
 
