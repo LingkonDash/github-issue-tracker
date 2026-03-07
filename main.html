@@ -25,13 +25,12 @@
 
   <style type="text/tailwindcss">
     @theme {
-      --color-primary-text: #000000;
+      --color-primary-text: #1F2937;
       --color-secondary-text: #64748B;
-
-      --color-blue-text: #0066ffde;
 
       --color-primary-bg: #F8FAFC;
       --color-secondary-bg: #ffffff;
+      --color-issues-bg: #FBFBFB;
     }
     </style>
 
@@ -44,11 +43,11 @@
     <nav class="max-w-[1600px] mx-auto navbar flex justify-between items-center">
       <div class="flex gap-2 justify-center items-center">
         <img width="36" src="assets/github-logo.png" alt="Github logo">
-        <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+        <h1 class="font-semibold text-2xl text-primary-text">GitHub Issues Tracker</h1>
       </div>
       <div class="hidden md:flex justify-center items-center gap-2">
         <div class="input input-bordered w-40 md:w-auto">
-          <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="mt-[2px] cursor-pointer text-primary-text"><i class="fa-solid fa-magnifying-glass"></i></button>
           <input type="text" placeholder="Search issues..." />
         </div>
         <button class="btn btn-primary">+ New Issue</button>
@@ -67,12 +66,39 @@
     </nav>
   </header>
   <main class="max-w-[1600px] mx-auto px-6">
-    <section class="mt-10 shadow-sm bg-secondary-bg p-6 rounded-lg">
+    <!-- Buttons  -->
+    <section class="mt-12 shadow-sm bg-secondary-bg p-6 rounded-lg">
       <div id="btn-container" class="flex flex-wrap gap-2 justify-around md:justify-start">
         <button id="all-btn" onclick="issueLoader('all-btn')" class="btn btn-primary w-24">All</button>
         <button id="open-btn" onclick="issueLoader('open-btn')" class="btn w-24">Open</button>
         <button id="closed-btn" onclick="issueLoader('closed-btn')" class="btn w-24">Closed</button>
       </div>
+    </section>
+
+    <!-- Main Section (issue loader) -->
+    <section class="mt-5 shadow-md rounded-lg bg-issues-bg">
+      <div class="flex justify-between items-center bg-secondary-bg rounded-t-lg border-b-3 border-[#E4E4E7] p-6">
+        <div class="flex justify-center items-center gap-2">
+          <div class="rounded-full bg-[#ECE4FF] p-2 w-fit">
+            <img src="assets/Aperture.png" alt="Issues">
+          </div>
+          <div>
+            <h2 class="font-semibold text-xl text-primary-text"><span>50</span> Issues</h2>
+            <p class="text-secondary-text">Track and manage your project issues</p>
+          </div>
+        </div>
+        <div class="flex justify-center items-center gap-4  text-primary-text pl-3">
+          <div class="flex justify-center items-center gap-2">
+            <img src="assets/green-ellipse.png" alt="Green Circle">
+            <p>Open</p>
+          </div>
+          <div class="flex justify-center items-center gap-2">
+            <img src="assets/purple-ellipse.png" alt="Purple Circle">
+            <p>Closed</p>
+          </div>
+        </div>
+      </div>
+      <div class="h-52"></div>
     </section>
 
   </main>
