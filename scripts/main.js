@@ -22,13 +22,12 @@ function dataToElment(data) {
     console.log(obj);
 
     const div = document.createElement('div');
-    div.className = 'border-t-5 border-green-border rounded-lg shadow-lg max-w-[350px]'
+    div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
     div.innerHTML = `
           <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
             <div class="flex justify-between items-center">
-              <img src="assets/Open-Status.png" alt="open status">
-              <div class="badge badge-soft badge-error rounded-full uppercase w-22">
-                High</div>
+              <img src="${obj.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png'}" alt="${obj.status} status">
+              <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
             <div class="space-y-2">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
