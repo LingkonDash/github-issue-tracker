@@ -4,18 +4,18 @@
 
 ## Q1. What is the difference between var, let, and const?
 
-Answer: The difference between var, let, and const is mainly about scope, reassignment, and how they behave in JavaScript.
+Answer: The difference between var, let, and const is mainly about scope, reassignment, and how they behave in while hoisting.
 
 var:
-var is the older way to declare variables in JavaScript. It is function scoped, meaning the variable is available inside the function where it is declared. var variables can also be redeclared and reassigned. Because of this behavior, var can sometimes create unexpected bugs in larger programs.
+var is the older way to declare variables in JavaScript. It is function scoped, meaning the variable is available inside the function where it is declared. var variables is get hoisted and initialized with undefined. var variables can also be redeclared and reassigned. Because of this behavior, var can sometimes create unexpected bugs in larger programs.
 
 let:
-let is a modern way to declare variables introduced in ES6. let is block scoped, which means the variable only exists inside the block `{ }` where it is declared, like inside a loop or an if statement. let variables can be reassigned, but they cannot be redeclared in the same scope.
+let is a modern way to declare variables introduced in ES6. let is block scoped, which means the variable only exists inside the block { } where it is declared, like inside a loop or an if statement. let variables also get hoisted but they maintain TDZ(Temporal Dead Zone). let variables can be reassigned, but they cannot be redeclared in the same scope.
 
 const:
 const is also block scoped like let. But const variables cannot be reassigned after they are declared. This means the value must stay the same after initialization. const is commonly used for values that should not change.
 
-In short, var is function scoped and can be redeclared, while let and const are block scoped, and const cannot be reassigned after declaration.
+In short, var is function scoped and can be redeclared also get hoisted while Memory Allocation phase, while let and const are block scoped and maintains TDZ while Allocation phase, and const cannot be reassigned after declaration.
 
 ---
 
@@ -27,8 +27,6 @@ The spread operator (...) is used in JavaScript to expand or spread elements of 
 For example, if we have an array, the spread operator can take each element from that array and spread them individually. This is commonly used to copy arrays, merge arrays, or pass multiple values into functions.
 
 It is also used with objects to copy properties from one object into another object.
-
-In simple words, the spread operator takes grouped values like an array or object and spreads them into individual elements or properties.
 
 ---
 
@@ -49,28 +47,22 @@ In short map() transforms elements and returns a new array, filter() selects ele
 
 ---
 
-Q4. What is an arrow function?
+## Q4. What is an arrow function?
 
 Answer:
 An arrow function is a shorter and modern way to write functions in JavaScript, introduced in ES6.
 
-Arrow functions use the arrow syntax (`=>`) instead of the traditional function keyword. They make the code shorter and cleaner, especially for small functions.
+Arrow functions use the arrow syntax ( => ) instead of the traditional function keyword. They make the code shorter and cleaner, especially for small functions.
 
 Arrow functions are often used in callbacks, array methods like map(), filter(), and forEach(), and other situations where a short function is needed.
 
-Another important behavior is that arrow functions do not have their own `this` value. Instead, they use the `this` value from the surrounding scope.
-
-In simple words, an arrow function is a compact way to write functions in JavaScript using `=>` syntax.
-
 ---
 
-Q5. What are template literals?
+## Q5. What are template literals?
 
 Answer:
-Template literals are a modern way to create strings in JavaScript using backticks (` ` ) instead of quotes.
+Template literals are a modern way to create strings in JavaScript using backticks ( ` ` ) instead of quotes.
 
 They allow us to insert variables or expressions directly inside a string using the `${ }` syntax. This is called string interpolation.
 
 Template literals also allow multi-line strings, which means we can write text across multiple lines without using special characters.
-
-In simple words, template literals make it easier to build dynamic strings by embedding variables and expressions inside a string.
