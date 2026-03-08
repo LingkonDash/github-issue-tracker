@@ -3,7 +3,10 @@ const btnContainer = document.getElementById('btn-container');
 const parentDiv = document.getElementById('parent-Div');
 
 const loader = document.getElementById('loader');
-const mainSection = document.getElementById('mainSection')
+const mainSection = document.getElementById('mainSection');
+
+const searchText = document.getElementById('search-text');
+const searchBtn = document.getElementById('search-btn');
 
 const totalIssues = document.getElementById('total-issues');
 let openIssues = [];
@@ -249,6 +252,33 @@ function modalLoader(data) {
 
   document.getElementById(`${data.id}`).showModal()
 }
+
+// Searching functionality
+searchText.addEventListener('keyup', (e) => {
+  
+  const realText = searchText.value.trim();
+  if (realText === '' ) {
+    allIssues();
+    return;
+  }
+  searchDataFetcher(realText);
+})
+
+// Search loader on keypress in search box 
+async function searchDataFetcher(text) {
+
+  showLoadng();
+
+  const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${text}`
+
+  const res = await fetch(url);
+  const json = await res.json();
+
+  dataToElment(json.data);
+  
+  hideLoadng();
+} 
+
 
 
 function dropdownMenu() {
