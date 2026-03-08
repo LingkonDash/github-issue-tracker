@@ -6,7 +6,9 @@ const loader = document.getElementById('loader');
 const mainSection = document.getElementById('mainSection');
 
 const searchText = document.getElementById('search-text');
-const searchBtn = document.getElementById('search-btn');
+
+// for Mobile 
+const searchTextM = document.getElementById('search-text-M');
 
 const totalIssues = document.getElementById('total-issues');
 let allIssuesArr = [];
@@ -70,12 +72,12 @@ function dataToElment(data) {
     const div = document.createElement('div');
     div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
     div.innerHTML = `
-          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg cursor-pointer" onclick="displayModal(${obj.id})">
             <div class="flex justify-between items-center">
               <img src="${obj.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png'}" alt="${obj.status} status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
+            <div class="space-y-2">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -113,12 +115,12 @@ function allIssuesToElement() {
     const div = document.createElement('div');
     div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
     div.innerHTML = `
-          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg cursor-pointer" onclick="displayModal(${obj.id})">
             <div class="flex justify-between items-center">
               <img src="${obj.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png'}" alt="${obj.status} status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
+            <div class="space-y-2">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -161,12 +163,12 @@ function openIssuesToElement() {
     const div = document.createElement('div');
     div.className = `border-t-5 border-green-border rounded-lg shadow-lg max-w-[350px]`
     div.innerHTML = `
-          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg cursor-pointer" onclick="displayModal(${obj.id})">
             <div class="flex justify-between items-center">
               <img src="assets/Open-Status.png" alt="Open status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
+            <div class="space-y-2">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -208,12 +210,12 @@ function closedIssuesToElement() {
     const div = document.createElement('div');
     div.className = `border-t-5 border-purple-border rounded-lg shadow-lg max-w-[350px]`
     div.innerHTML = `
-          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg cursor-pointer" onclick="displayModal(${obj.id})">
             <div class="flex justify-between items-center">
               <img src="assets/Closed-Status.png" alt="Closed status">
               <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
             </div>
-            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
+            <div class="space-y-2">
               <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
               <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
             </div>
@@ -305,6 +307,17 @@ function modalLoader(data) {
 searchText.addEventListener('keyup', (e) => {
   
   const realText = searchText.value.trim();
+  if (realText === '' ) {
+    allIssues();
+    return;
+  }
+  searchDataFetcher(realText);
+})
+
+// Searching functionality for mobile
+searchTextM.addEventListener('keyup', (e) => {
+  
+  const realText = searchTextM.value.trim();
   if (realText === '' ) {
     allIssues();
     return;

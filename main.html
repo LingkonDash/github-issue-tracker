@@ -60,7 +60,7 @@
       </div>
       <div class="hidden md:flex justify-center items-center gap-2">
         <div class="input input-bordered w-40 md:w-auto flex flex-row-reverse items-center justify-center">
-          <button id="search-btn" class="mt-[2px] cursor-pointer text-primary-text">
+          <button class="mt-[2px] cursor-pointer text-primary-text">
             <i class="fa-solid fa-magnifying-glass"></i></button>
           <input id="search-text" type="text" placeholder="Search issues..." />
         </div>
@@ -72,7 +72,7 @@
           class="absolute top-[47px] bg-white -right-[22px] hidden flex-col gap-5 py-10 p-5 shadow-md">
           <div class="input input-bordered flex flex-row-reverse items-center justify-center w-40 md:w-auto">
             <button class="mt-[2px] cursor-pointer"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <input type="text" placeholder="Search issues..." />
+            <input id="search-text-M" type="text" placeholder="Search issues..." />
           </div>
           <button class="btn btn-primary shadow-none">+ New Issue</button>
         </div>
@@ -121,40 +121,6 @@
 
       <!-- Data Modal -->
       <div id="modal-parent">
-
-        <dialog class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box space-y-6 text-secondary-text">
-            <div class="space-y-2">
-              <h3 class="text-2xl font-bold text-primary-text">Fix broken image uploads</h3>
-              <div class="text-[14px] flex justify-start items-center gap-2">
-                <div class="text-white bg-green-border px-4 py-1 rounded-full text-center font-medium w-fit">Opened</div>
-                <p>&#9679; Opened by <span class="text-primary-text font-medium">Fahim Ahmed</span> &#9679; 22/02/2026</p>
-              </div>
-            </div>
-            <div class="flex flex-wrap justify-start items-center gap-2">
-              <div class="badge badge-outline badge-error bg-soft-red rounded-full uppercase text-xs px-2 py-0">bug</div>
-              <div class="badge badge-outline badge-warning bg-soft-yellow rounded-full uppercase text-xs px-2 py-0">help wanted</div>
-            </div>
-            <div>
-              <p>The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
-            </div>
-            <div class="rounded-lg grid grid-cols-2 p-4 bg-primary-bg">
-              <div>
-                <p>Assignee:</p>
-                <p class="font-bold text-primary-text">Fahim Ahmed</p>
-              </div>
-              <div>
-                <p>Priority:</p>
-                <div class="text-white bg-badge-red-bg uppercase text-xs px-4 py-1 rounded-full text-center w-fit">High</div>
-              </div>
-            </div>
-            <div class="modal-action">
-              <form method="dialog">
-                <button class="btn btn-primary">Close</button>
-              </form>
-            </div>
-          </div>
-        </dialog>
 
       </div>
 
