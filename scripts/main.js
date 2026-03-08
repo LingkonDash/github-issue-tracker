@@ -207,17 +207,39 @@ async function displayModal(id) {
 function modalLoader(data) {
   const modalParent = document.getElementById('modal-parent')
 
+  console.log(data);
+
   modalParent.innerHTML = ''
 
   const div = document.createElement('div');
   div.innerHTML = `
   <dialog id="${data.id}" class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
-            <h3 class="text-lg font-bold">${data.title}</h3>
-            <p class="py-4">Press ESC key orasdfasdfasdf click the button below to close</p>
+          <div class="modal-box space-y-6 text-secondary-text">
+            <div class="space-y-2">
+              <h3 class="text-2xl font-bold text-primary-text">Fix broken image uploads</h3>
+              <div class="text-[14px] flex justify-start items-center gap-2">
+                <div class="text-white bg-green-border px-4 py-1 rounded-full text-center font-medium w-fit">Opened</div>
+                <p>&#9679; Opened by Fahim Ahmed &#9679; 22/02/2026</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap justify-start items-center gap-2">
+              <div class="badge badge-outline badge-error bg-soft-red rounded-full uppercase text-xs px-2 py-0">bug</div>
+              <div class="badge badge-outline badge-warning bg-soft-yellow rounded-full uppercase text-xs px-2 py-0">help wanted</div>
+            </div>
+            <div>
+              <p>The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+            </div>
+            <div class="rounded-lg grid grid-cols-2 p-4 bg-primary-bg">
+              <div>
+                <p>Assignee:</p>
+                <p class="font-bold text-primary-text">Fahim Ahmed</p>
+              </div>
+              <div>
+                <p>Priority:</p>
+                <div class="text-white bg-badge-red-bg uppercase text-xs px-4 py-1 rounded-full text-center w-fit">High</div>
+              </div>
+            </div>
             <div class="modal-action">
-              
-              <!-- if there is a button in form, it will close the modal -->
               <form method="dialog">
                 <button class="btn btn-primary">Close</button>
               </form>
