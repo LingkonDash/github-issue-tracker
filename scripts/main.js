@@ -200,14 +200,10 @@ async function displayModal(id) {
 
   modalLoader(json.data);
 
-  console.log(json.data);
-
 }
 
 function modalLoader(data) {
   const modalParent = document.getElementById('modal-parent')
-
-  console.log(data);
 
   modalParent.innerHTML = ''
 
@@ -216,27 +212,27 @@ function modalLoader(data) {
   <dialog id="${data.id}" class="modal modal-bottom sm:modal-middle">
           <div class="modal-box space-y-6 text-secondary-text">
             <div class="space-y-2">
-              <h3 class="text-2xl font-bold text-primary-text">Fix broken image uploads</h3>
+              <h3 class="text-2xl font-bold text-primary-text">${data.title}</h3>
               <div class="text-[14px] flex justify-start items-center gap-2">
-                <div class="text-white bg-green-border px-4 py-1 rounded-full text-center font-medium w-fit">Opened</div>
-                <p>&#9679; Opened by Fahim Ahmed &#9679; 22/02/2026</p>
+                <div class="text-white ${data.status === 'open' ? 'bg-green-border' : 'bg-purple-border'} px-4 py-1 rounded-full text-center font-medium w-fit">${data.status}</div>
+                <p>&#9679; Opened by <span class="text-primary-text font-medium">${data.author}</span> &#9679; ${new Date(data.createdAt).toLocaleDateString()}</p>
               </div>
             </div>
             <div class="flex flex-wrap justify-start items-center gap-2">
-              <div class="badge badge-outline badge-error bg-soft-red rounded-full uppercase text-xs px-2 py-0">bug</div>
-              <div class="badge badge-outline badge-warning bg-soft-yellow rounded-full uppercase text-xs px-2 py-0">help wanted</div>
+              <div class="${data.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : data.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : data.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : data.labels[0] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${data.labels[0]}</div>
+              ${data.labels[1] ? `<div class="${data.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : data.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : data.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : data.labels[1] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-primary' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${data.labels[1]}</div>` : ''}
             </div>
             <div>
-              <p>The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.</p>
+              <p>${data.description}</p>
             </div>
             <div class="rounded-lg grid grid-cols-2 p-4 bg-primary-bg">
               <div>
                 <p>Assignee:</p>
-                <p class="font-bold text-primary-text">Fahim Ahmed</p>
+                <p class="font-bold text-primary-text">${data.assignee ? data.assignee : 'Unassigned'}</p>
               </div>
               <div>
                 <p>Priority:</p>
-                <div class="text-white bg-badge-red-bg uppercase text-xs px-4 py-1 rounded-full text-center w-fit">High</div>
+                <div class="${data.priority === 'high' ? 'badge badge-error' : data.priority === 'medium' ? 'badge badge-warning' : 'badge badge-neutral'} rounded-full font-medium uppercase ">${data.priority}</div>
               </div>
             </div>
             <div class="modal-action">
