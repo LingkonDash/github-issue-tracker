@@ -9,6 +9,7 @@ const searchText = document.getElementById('search-text');
 const searchBtn = document.getElementById('search-btn');
 
 const totalIssues = document.getElementById('total-issues');
+let allIssuesArr = [];
 let openIssues = [];
 let closeIssues = [];
 
@@ -41,7 +42,7 @@ function issueLoader(id) {
 
   btnContainer.querySelector(`#${id}`).classList.add('btn-primary')
 
-  if (id === 'all-btn') allIssues();
+  if (id === 'all-btn') allIssuesToElement();
   if (id === 'open-btn') openIssuesToElement();
   if (id === 'closed-btn') closedIssuesToElement();
 }
@@ -50,15 +51,17 @@ function issueLoader(id) {
 function dataToElment(data) {
 
 
-
   totalIssues.innerText = data.length;
 
   parentDiv.innerHTML = ''
 
-  openIssues = []
-  closeIssues = []
+  allIssuesArr = [];
+  openIssues = [];
+  closeIssues = [];
 
   data.forEach(obj => {
+
+    allIssuesArr.push(obj);
 
     if (obj.status === 'open') openIssues.push(obj);
     else closeIssues.push(obj);
@@ -97,6 +100,51 @@ function dataToElment(data) {
 
   });
 }
+
+
+function allIssuesToElement() {
+
+  totalIssues.innerText = allIssuesArr.length;
+
+   parentDiv.innerHTML = '';
+
+   allIssuesArr.forEach(obj => {
+
+    const div = document.createElement('div');
+    div.className = `border-t-5 border-${obj.status === 'open' ? 'green-border' : 'purple-border'} rounded-lg shadow-lg max-w-[350px]`
+    div.innerHTML = `
+          <div class="border-b-2 border-[#cccccf] p-6 space-y-4 rounded-t-lg">
+            <div class="flex justify-between items-center">
+              <img src="${obj.status === 'open' ? 'assets/Open-Status.png' : 'assets/Closed-Status.png'}" alt="${obj.status} status">
+              <div class="${obj.priority === 'high' ? 'badge badge-soft badge-error' : obj.priority === 'medium' ? 'badge badge-soft badge-warning' : 'badge badge-ghost'} rounded-full uppercase w-22">${obj.priority}</div>
+            </div>
+            <div class="space-y-2 cursor-pointer" onclick="displayModal(${obj.id})">
+              <h2 class="font-semibold text-primary-text ">${obj.title}</h2>
+              <p class="text-secondary-text text-xs line-clamp-2">${obj.description}</p>
+            </div>
+            <div class="flex flex-wrap justify-start items-center gap-2">
+              <div class="${obj.labels[0] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[0] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[0] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[0] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-blue' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[0]}</div>
+              ${obj.labels[1] ? `<div class="${obj.labels[1] === 'enhancement' ? 'badge badge-outline badge-accent bg-soft-green' : obj.labels[1] === 'bug' ? 'badge badge-outline badge-error bg-soft-red' : obj.labels[1] === 'documentation' ? 'badge badge-outline badge-info bg-soft-blue' : obj.labels[1] === 'good first issue' ? 'badge badge-outline badge-primary bg-soft-primary' : 'badge badge-outline badge-warning bg-soft-yellow'} rounded-full uppercase text-xs px-2 py-0">${obj.labels[1]}</div>` : ''}
+            </div>
+          </div>
+          <div class="p-6 space-y-2 text-secondary-text text-xs">
+            <div class="flex justify-between items-center">
+              <p>#${obj.id} ${obj.author}</p>
+              <p>${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
+            <div class="flex justify-between items-center">
+              <p>Assignee: ${obj.assignee ? obj.assignee : 'Unassigned'}</p>
+              <p>Updated: ${new Date(obj.createdAt).toLocaleDateString()}</p>
+            </div>
+          </div>
+
+    `
+    parentDiv.appendChild(div);
+
+  });
+}
+
+
 
 // Loading open issues data 
 function openIssuesToElement() {
