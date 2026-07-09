@@ -1,68 +1,143 @@
-### Answers of Questions.
+# 🐙 GitHub Issues Tracker
+
+A clean, responsive issue-tracking dashboard inspired by GitHub Issues — built with vanilla JavaScript, Tailwind CSS, and DaisyUI. Sign in, browse issues, filter by status, and manage everything from a single, polished interface.
+
+**🔗 Live Demo:** [https://lingkondash.github.io/github-issue-tracker/](https://lingkondash.github.io/github-issue-tracker/)
+
 
 ---
 
-## Q1. What is the difference between var, let, and const?
+## 📖 Overview
 
-Answer: The difference between var, let, and const is mainly about scope, reassignment, and how they behave in while hoisting.
+**GitHub Issues Tracker** recreates the core experience of GitHub's native issue tracker as a lightweight, standalone web app. It starts with a login screen, then drops you into a dashboard where issues can be viewed, searched, and filtered by status — all wrapped in a modern, card-based UI.
 
-var:
-var is the older way to declare variables in JavaScript. It is function scoped, meaning the variable is available inside the function where it is declared. var variables is get hoisted and initialized with undefined. var variables can also be redeclared and reassigned. Because of this behavior, var can sometimes create unexpected bugs in larger programs.
-
-let:
-let is a modern way to declare variables introduced in ES6. let is block scoped, which means the variable only exists inside the block { } where it is declared, like inside a loop or an if statement. let variables also get hoisted but they maintain TDZ(Temporal Dead Zone). let variables can be reassigned, but they cannot be redeclared in the same scope.
-
-const:
-const is also block scoped like let. But const variables cannot be reassigned after they are declared. This means the value must stay the same after initialization. const is commonly used for values that should not change.
-
-In short, var is function scoped and can be redeclared also get hoisted while Memory Allocation phase, while let and const are block scoped and maintains TDZ while Allocation phase, and const cannot be reassigned after declaration.
+This project was built as a hands-on exercise in DOM manipulation, dynamic UI state, and component-style design using plain HTML/CSS/JS — no frameworks required.
 
 ---
 
-## Q2. What is the spread operator (...)?
+## ✨ Features
 
-Answer:
-The spread operator (...) is used in JavaScript to expand or spread elements of an array or properties of an object into another array, object, or function.
-
-For example, if we have an array, the spread operator can take each element from that array and spread them individually. This is commonly used to copy arrays, merge arrays, or pass multiple values into functions.
-
-It is also used with objects to copy properties from one object into another object.
-
----
-
-## Q3. What is the difference between map(), filter(), and forEach()?
-
-Answer: The difference between map(), filter(), and forEach() is mainly about how they process array elements and what they return.
-
-map():
-map() goes through each element of an array and creates a new array by transforming every element. The new array will have the same length as the original array, but the values may be different depending on the transformation.
-
-filter():
-filter() also goes through each element of an array, but it returns only the elements that match a condition. So the new array can have fewer elements than the original array.
-
-forEach():
-forEach() is used to loop through each element of an array, but it does not return a new array. It simply runs a function for every element in the array, usually for tasks like logging values or updating something.
-
-In short map() transforms elements and returns a new array, filter() selects elements based on a condition, and forEach() just loops through the array without returning a new array.
+- 🔐 **Login Screen** — Simple credential-based sign-in flow with a show/hide password toggle
+- 📊 **Issues Dashboard** — Central view showing total issue count and status breakdown
+- 🟢 **Status Filtering** — Instantly filter issues by **All**, **Open**, or **Closed**
+- 🔍 **Live Search** — Search bar to quickly find issues by keyword (desktop & mobile)
+- 🗂️ **Issue Cards** — Clean, grid-based layout that adapts from 1 to 4 columns depending on screen size
+- 🪟 **Issue Detail Modal** — View full issue details without leaving the page
+- ⏳ **Loading State** — Spinner shown while issues are being fetched/loaded
+- 📱 **Fully Responsive** — Dedicated mobile navigation with a collapsible dropdown menu
+- ➕ **New Issue Button** — Quick-access action to create a new issue
 
 ---
 
-## Q4. What is an arrow function?
+## 🛠️ Tech Stack
 
-Answer:
-An arrow function is a shorter and modern way to write functions in JavaScript, introduced in ES6.
-
-Arrow functions use the arrow syntax ( => ) instead of the traditional function keyword. They make the code shorter and cleaner, especially for small functions.
-
-Arrow functions are often used in callbacks, array methods like map(), filter(), and forEach(), and other situations where a short function is needed.
+| Category         | Technology                          |
+| ------------------ | -------------------------------------- |
+| **Structure**       | HTML5                                  |
+| **Styling**         | Tailwind CSS v4 · DaisyUI 5             |
+| **Icons**           | Font Awesome 7                          |
+| **Logic**           | Vanilla JavaScript                      |
+| **Fonts**           | Geist                                    |
+| **Deployment**      | GitHub Pages                             |
 
 ---
 
-## Q5. What are template literals?
+## 📂 Project Structure
 
-Answer:
-Template literals are a modern way to create strings in JavaScript using backticks ( ` ` ) instead of quotes.
+```
+github-issue-tracker/
+├── assets/              # Logos, icons, and status indicator images
+├── scripts/
+│   ├── login.js         # Handles login form logic & password visibility toggle
+│   └── main.js          # Handles issue loading, filtering, search, and modals
+├── index.html            # Login page
+├── main.html              # Issues dashboard
+├── style.css              # Custom styles & Geist font setup
+├── tailwind.config.js
+└── readme.md
+```
 
-They allow us to insert variables or expressions directly inside a string using the `${ }` syntax. This is called string interpolation.
+---
 
-Template literals also allow multi-line strings, which means we can write text across multiple lines without using special characters.
+## 🔑 Demo Credentials
+
+The login page uses a simple hardcoded check for demo purposes:
+
+| Field       | Value       |
+| ------------ | ------------ |
+| **Username**  | `admin`      |
+| **Password**  | `admin123`   |
+
+---
+
+## 🚀 Getting Started
+
+Since this is a static HTML/CSS/JS project, no build step or package installation is required.
+
+### Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/LingkonDash/github-issue-tracker.git
+   cd github-issue-tracker
+   ```
+
+2. **Open the app**
+
+   Simply open `index.html` in your browser, or serve it locally for the best experience:
+   ```bash
+   npx serve .
+   ```
+   or, if you have Python installed:
+   ```bash
+   python -m http.server 5500
+   ```
+
+3. **Log in** using the demo credentials above, and you'll land on the issues dashboard (`main.html`).
+
+---
+
+## 🖥️ App Flow
+
+1. **`index.html`** — User lands on the login screen and signs in with the demo credentials
+2. **`main.html`** — On successful login, the user is taken to the dashboard where they can:
+   - View total issue count at a glance
+   - Filter issues using the **All / Open / Closed** buttons
+   - Search issues by keyword
+   - Click into an issue to view details in a modal
+   - Create a new issue via the **+ New Issue** button
+
+---
+
+## 🎯 What I Learned
+
+- Building multi-page vanilla JS applications without a framework
+- Structuring reusable UI patterns (cards, modals, dropdowns) with plain DOM APIs
+- Styling efficiently with Tailwind CSS v4 and the DaisyUI component library
+- Managing UI state (active filters, search queries, loading states) using plain JavaScript
+- Designing a fully responsive layout with distinct desktop and mobile navigation patterns
+
+---
+
+## 📌 Future Improvements
+
+- [ ] Connect to the real GitHub REST API to fetch live repository issues
+- [ ] Add proper authentication instead of hardcoded demo credentials
+- [ ] Persist issues using local storage or a backend database
+- [ ] Add labels, assignees, and comment threads to issue cards
+- [ ] Add sorting (by date, priority, or activity)
+
+---
+
+## 📄 License
+
+This project is open source and available for learning purposes.
+
+---
+
+## 🙋 Author
+
+Built with ❤️ by **Lingkon Dash**
+
+- GitHub: [@LingkonDash](https://github.com/LingkonDash)
+- Live Demo: [lingkondash.github.io/github-issue-tracker](https://lingkondash.github.io/github-issue-tracker/)
